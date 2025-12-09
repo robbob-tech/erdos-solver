@@ -11,11 +11,11 @@ describe('Erdős Solver Integration', () => {
     expect(encoder.dataSupernova).toBeDefined();
   });
 
-  it('should encode Mian-Chowla sequence', () => {
+  it('should encode Mian-Chowla sequence', async () => {
     const encoder = new MathObjectEncoder();
     const mianChowla = [1, 2, 4, 8, 13, 21, 31, 45, 66, 81, 97];
     
-    const sig = encoder.encodeSequence(mianChowla, 'gaps');
+    const sig = await encoder.encodeSequence(mianChowla, 'gaps');
     
     expect(sig.type).toBe('rh_trace');
     expect(sig.anomalyScores).toBeDefined();
@@ -45,30 +45,30 @@ describe('Erdős Solver Integration', () => {
     expect(stats.gaps.min).toBeGreaterThan(0);
   });
 
-  it('should encode numerical sequences', () => {
+  it('should encode numerical sequences', async () => {
     const encoder = new MathObjectEncoder();
     const sequence = [1, 2, 4, 8, 13, 21, 31, 45, 66, 81, 97];
     
     // Need at least 100 values for numerical encoding
     const longSequence = Array.from({ length: 150 }, (_, i) => i + 1);
-    const sig = encoder.encodeSequence(longSequence, 'values');
+    const sig = await encoder.encodeSequence(longSequence, 'values');
     
     expect(sig.type).toBe('numerical');
     expect(sig.signatures).toBeDefined();
     expect(sig.stats).toBeDefined();
   });
 
-  it('should compare sequences with KK kernel', () => {
+  it('should compare sequences with KK kernel', async () => {
     const encoder = new MathObjectEncoder();
     
     const seq1 = [1, 2, 4, 8, 13];
     const seq2 = [1, 2, 4, 8, 14]; // similar but different
     
-    const sig1 = encoder.encodeSequence(seq1, 'gaps');
-    const sig2 = encoder.encodeSequence(seq2, 'gaps');
+    const sig1 = await encoder.encodeSequence(seq1, 'gaps');
+    const sig2 = await encoder.encodeSequence(seq2, 'gaps');
     
     // Compare first signatures
-    if (sig1.signatures.length > 0 && sig2.signatures.length > 0) {
+    if (sig1.signatures && sig1.signatures.length > 0 && sig2.signatures && sig2.signatures.length > 0) {
       const similarity = encoder.compareKK(
         sig1.signatures[0],
         sig2.signatures[0]
