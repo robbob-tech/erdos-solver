@@ -1,0 +1,19 @@
+name = "erdos-solver"
+main = "src/api/index.js"
+compatibility_date = "2024-01-01"
+
+[vars]
+ENVIRONMENT = "production"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "erdos-problems"
+database_id = "c8361c32-085f-409f-90f9-659ed9fcf84a"
+
+[[kv_namespaces]]
+binding = "CACHE"
+id = "7407b8354c0b41adb444f96f7d47e253"
+
+# [[vectorize]]
+# binding = "VECTORIZE"
+# index_name = "problem-embeddings"

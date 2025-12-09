@@ -1,0 +1,37 @@
+{
+  "name": "erdos-solver",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Erdős Problem Solver using sparse encoders and LLM agents",
+  "main": "src/api/index.js",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "test": "vitest",
+    "scrape": "node src/scrapers/erdos-scraper.js"
+  },
+  "dependencies": {
+    "hono": "^3.11.7",
+    "@anthropic-ai/sdk": "^0.10.0",
+    "cheerio": "^1.0.0-rc.12",
+    "node-fetch": "^3.3.2",
+    "mathjs": "^12.2.0",
+    "unified": "^11.0.4",
+    "remark-parse": "^11.0.0",
+    "remark-math": "^6.0.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "wrangler": "^3.22.1",
+    "vitest": "^1.1.0"
+  },
+  "keywords": [
+    "erdos",
+    "mathematics",
+    "sparse-encoding",
+    "llm",
+    "problem-solving"
+  ],
+  "author": "",
+  "license": "MIT"
+}
